@@ -1,0 +1,30 @@
+<h1>Stories</h1>
+<div class="row">
+    <% if(stories!=[]) {%>
+    <% stories.forEach(function(story){ %>
+          <div class="col s12 m4">
+              <div class="card">
+                  <div class="card-image">
+                      <%- helper.editIcon(story.user,loggedUser,story._id) %>
+                  </div>
+                  <div class="card-content center-align">
+                      <h5><%= story.title %></h5>
+                      <p><%- helper.truncate(helper.stripTags(story.body),40) %></p>
+                      <br>
+                      <div class="chip">
+                          <img src="<%= story.user.image %>" alt="">
+                          <a href="/stories/user/<%= story.user._id %>"><%= story.user.displayName %>
+                        </a>
+                      </div>
+                  </div>
+                  <div class="card-action center-align">
+                      <a href="/stories/<%= story._id %>" class="btn grey">Read More</a>
+                  </div>
+              </div>
+          </div>
+        <% }) %>
+
+        <% } else { %>
+            <p>No stories to display.</p>
+        <% } %>
+</div>
